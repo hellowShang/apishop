@@ -339,6 +339,9 @@
 </div>
 <!-- end cart menu -->
 
+
+
+
 <div class="container">
     @yield('content')
 </div>
