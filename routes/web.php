@@ -35,3 +35,4 @@ Route::get('pay','Controller\PayController@pay');
 Route::get('success','Controller\PayController@success');
 // 异步通知
 Route::get('notify','Controller\PayController@notify');
+

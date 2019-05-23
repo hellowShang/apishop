@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
-@section('title', '首页')
+@section('title', 'Laravel学院')
 
+@section('sidebar')
     @parent
+@endsection
 
 @section('content')
+    <!-- slider -->
     <div class="slider">
 
         <ul class="slides">
