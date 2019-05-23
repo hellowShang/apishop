@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('layouts.app');
@@ -28,3 +18,15 @@ Route::get('/cart/cartList/','CartController@cartList');
 
 
 
+=======
+    return view('index');
+});
+
+
+// 支付宝支付
+Route::get('pay','Controller\PayController@pay');
+// 同步通知
+Route::get('success','Controller\PayController@success');
+// 异步通知
+Route::get('notify','Controller\PayController@notify');
+>>>>>>> f51057191359506a4a56c4871c949cda0f5bcc1f
