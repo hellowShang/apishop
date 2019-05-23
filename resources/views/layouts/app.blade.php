@@ -43,14 +43,13 @@
 <div class="side-nav-panel-right">
     <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
         <li class="profil">
-            <img src="img/profile.jpg" alt="">
+            <img src="/img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
-        <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
+        <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>收货地址</a></li>
+        <li><a href="login.html"><i class="fa fa-sign-in"></i>登录</a></li>
+        <li><a href="register.html"><i class="fa fa-user-plus"></i>注册</a></li>
     </ul>
 </div>
 <!-- end side nav right-->
@@ -69,7 +68,7 @@
                             <div class="icon">
                                 <i class="fa fa-home"></i>
                             </div>
-                            Home
+                            首页
                         </div>
                     </a>
                 </div>
@@ -79,81 +78,49 @@
                             <div class="icon">
                                 <i class="fa fa-bars"></i>
                             </div>
-                            Product List
+                            全部商品
                         </div>
                     </a>
                 </div>
-                <div class="col s4">
-                    <a href="shop-single.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-eye"></i>
-                            </div>
-                            Single Shop
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col s4">
                     <a href="wishlist.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-heart"></i>
                             </div>
-                            Wishlist
-                        </div>
-                    </a>
-                </div>
-                <div class="col s4">
-                    <a href="cart.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-shopping-cart"></i>
-                            </div>
-                            Cart
-                        </div>
-                    </a>
-                </div>
-                <div class="col s4">
-                    <a href="checkout.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-credit-card"></i>
-                            </div>
-                            Checkout
+                            收藏
                         </div>
                     </a>
                 </div>
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="blog.html" class="button-link">
+                    <a href="cart.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
-                                <i class="fa fa-bold"></i>
+                                <i class="fa fa-shopping-cart"></i>
                             </div>
-                            Blog
+                            购物车
                         </div>
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="blog-single.html" class="button-link">
+                    <a href="login.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
-                                <i class="fa fa-file-text-o"></i>
+                                <i class="fa fa-sign-in"></i>
                             </div>
-                            Blog Single
+                            登录
                         </div>
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="error404.html" class="button-link">
+                    <a href="register.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
-                                <i class="fa fa-hourglass-half"></i>
+                                <i class="fa fa-user-plus"></i>
                             </div>
-                            404
+                            注册
                         </div>
                     </a>
                 </div>
@@ -175,7 +142,7 @@
                             <div class="icon">
                                 <i class="fa fa-user"></i>
                             </div>
-                            About Us
+                            个人中心
                         </div>
                     </a>
                 </div>
@@ -185,39 +152,7 @@
                             <div class="icon">
                                 <i class="fa fa-envelope-o"></i>
                             </div>
-                            Contact
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s4">
-                    <a href="setting.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-cog"></i>
-                            </div>
-                            Settings
-                        </div>
-                    </a>
-                </div>
-                <div class="col s4">
-                    <a href="login.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-sign-in"></i>
-                            </div>
-                            Login
-                        </div>
-                    </a>
-                </div>
-                <div class="col s4">
-                    <a href="register.html" class="button-link">
-                        <div class="menu-link">
-                            <div class="icon">
-                                <i class="fa fa-user-plus"></i>
-                            </div>
-                            Register
+                            收货地址
                         </div>
                     </a>
                 </div>
