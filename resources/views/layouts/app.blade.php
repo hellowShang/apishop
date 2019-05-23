@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/css/fakeLoader.css">
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/style.css">
-
     <link rel="shortcut icon" href="/img/favicon.png">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/materialize.min.js"></script>
