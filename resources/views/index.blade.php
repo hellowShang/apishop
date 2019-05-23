@@ -22,16 +22,16 @@
             <li>
                 <img src="/img/slide2.jpg" alt="">
                 <div class="caption slider-content center-align">
-                    <h2>JACKETS BUSINESS</h2>
-                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <h2>艾欧尼亚，号角不灭</h2>
+                    <h4>为出生之土而战！</h4>
                     <a href="" class="btn button-default">SHOP NOW</a>
                 </div>
             </li>
             <li>
                 <img src="/img/slide3.jpg" alt="">
                 <div class="caption slider-content center-align">
-                    <h2>FASHION SHOP</h2>
-                    <h4>Lorem ipsum dolor sit amet.</h4>
+                    <h2>长路漫漫，唯剑作伴</h2>
+                    <h4>吾虽浪迹天涯，却又未曾迷失本心</h4>
                     <a href="" class="btn button-default">SHOP NOW</a>
                 </div>
             </li>
