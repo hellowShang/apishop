@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-//    return view();
+    return view('layouts.app');
 });
+
+
+//购物车
+Route::get('/cart/cartAdd/','CartController@cartAdd');
+Route::get('/cart/cartList/','CartController@cartList');
+
+
+
+
+
+
+
+
+
