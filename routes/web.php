@@ -25,13 +25,23 @@ Route::post('/user/loginadd','Controller\UserController@loginadd');
 Route::get('/user/address','Controller\AddressController@address');
 Route::any('/user/getaddress','Controller\AddressController@getaddress');
 Route::any('/user/addressadd','Controller\AddressController@addressadd');
+Route::any('/user/addresslist','Controller\AddressController@addresslist');
+Route::any('/user/addresslists','Controller\AddressController@addresslists');
+Route::any('/user/addressdel','Controller\AddressController@addressdel');
+Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
 //购物车
+
 Route::post('/cart/cartadd/','Controller\CartController@cartadd');
 Route::get('/cart/cartlist/','Controller\CartController@cartlist');
 Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 
+
+// 订单展示
+Route::get('/order/list','Controller\OrderController@orderList');
+// 订单删除
+Route::get('/order/deleteOrder','Controller\OrderController@deleteOrder');
 
 // 支付宝支付
 Route::get('pay','Controller\PayController@pay');
