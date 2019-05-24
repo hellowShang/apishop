@@ -7,10 +7,13 @@ Route::get('/', function () {
 
 
 // * 前台首页
-Route::get('/home/index','Controller\IndexController@index');
+Route::get('/home/index/','Controller\IndexController@index');
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
+
+//商品详情页展示
+Route::get('/goods/detail/{goods_id}','Controller\GoodsController@detail');
 
 //用户注册
 Route::get('/user/reg','Controller\UserController@reg');
@@ -22,12 +25,17 @@ Route::post('/user/loginadd','Controller\UserController@loginadd');
 Route::get('/user/address','Controller\AddressController@address');
 Route::any('/user/getaddress','Controller\AddressController@getaddress');
 Route::any('/user/addressadd','Controller\AddressController@addressadd');
+Route::any('/user/addresslist','Controller\AddressController@addresslist');
+Route::any('/user/addresslists','Controller\AddressController@addresslists');
+Route::any('/user/addressdel','Controller\AddressController@addressdel');
+Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
 //购物车
-Route::get('/cart/cartAdd/','Controller\CartController@cartAdd');
-Route::get('/cart/cartList/','Controller\CartController@cartList');
 
+Route::post('/cart/cartadd/','Controller\CartController@cartadd');
+Route::get('/cart/cartlist/','Controller\CartController@cartlist');
+Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 
 
 // 订单展示

@@ -64,7 +64,7 @@ class UserController extends Controller
         $arr=UsreModel::where('name',$name)->first();
         if($arr){
             if($arr['pass']==$pass){
-                setcookie('uid',$arr->uid,time()+86400,'/','xm.com',false,true);
+                setcookie('uid',$arr->uid,time()+86400,'/','mstore.com',false,true);
                 return json_encode(['code'=>0,'msg'=>'登录成功']);
             }else{
                 return json_encode(['code'=>1,'msg'=>'密码错误']);
