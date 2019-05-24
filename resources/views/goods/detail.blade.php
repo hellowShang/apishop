@@ -9,17 +9,17 @@
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="HandheldFriendly" content="True">
 
-	<link rel="stylesheet" href="css/materialize.css">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.css">
-	<link rel="stylesheet" href="css/owl.transitions.css">
-	<link rel="stylesheet" href="css/fakeLoader.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/materialize.css">
+	<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/owl.theme.css">
+	<link rel="stylesheet" href="/css/owl.transitions.css">
+	<link rel="stylesheet" href="/css/fakeLoader.css">
+	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="/css/style.css">
 	
-	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="shortcut icon" href="/img/favicon.png">
 
 </head>
 <body>
@@ -41,7 +41,7 @@
 	<div class="side-nav-panel-right">
 		<ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
 			<li class="profil">
-				<img src="img/profile.jpg" alt="">
+				<img src="/img/profile.jpg" alt="">
 				<h2>John Doe</h2>
 			</li>
 			<li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
@@ -262,7 +262,7 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="img/cart-menu1.png" alt="">
+									<img src="/img/cart-menu1.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -297,7 +297,7 @@
 						<div class="cart-2">
 							<div class="row">
 								<div class="col s5">
-									<img src="img/cart-menu2.png" alt="">
+									<img src="/img/cart-menu2.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -361,53 +361,46 @@
 		</div>
 	</div>
 	<!-- end cart menu -->
-
-	<!-- product -->
-	<div class="section product product-list">
+	
+	<!-- shop single -->
+	<div class="pages section">
 		<div class="container">
-			<div class="pages-head">
-				<h3>商品列表</h3>
-			</div>
-			<div class="input-field">
-				<select>
-					<option value="">Popular</option>
-					<option value="1">New Product</option>
-					<option value="2">Best Sellers</option>
-					<option value="3">Best Reviews</option>
-					<option value="4">Low Price</option>
-					<option value="5">High Price</option>
-				</select>
-			</div>
 			
-			<div class="row">
-				@foreach($list as $k=>$v)	
-				<div class="col s6">				
-					<div class="content">
-						<a href='/goods/detail/{{$v->goods_id}}'><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:80%"></a>
-						<h6><a href="/goods/detail/{{$v->goods_id}}"><span>{{$v->goods_name}}</span></a></h6>
-						<div class="price">
-							价格：￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：<b>{{$v->goods_score}}</b>
+			<div class="shop-single">
+				<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}  " alt="" style="width:30%; ">
+				<h5></h5>
+				<div class="price">￥{{$goods->self_price}} <span>￥{{$goods->market_price}}</span></div>
+				库存：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_score}}&nbsp;&nbsp;&nbsp;</b>
+				数量：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_num}}&nbsp;&nbsp;&nbsp;</b><br>
+				<button type="button" class="btn button-default">{{$goods->goods_name}}</button>
+			</div>
+			<div class="review">
+					<h5>{{$goods->goods_desc}}</h5>
+					<div class="review-details">
+						<div class="row">
+							<div class="col s3">
+								<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}" alt="" class="responsive-img">
+							</div>
+							<div class="col s9">
+								<div class="review-title">
+									<span><strong>商品简介：</strong> {{$goods->goods_desc}} <a href=""></a></span>
+								</div>
+								<p></p>
+							</div>
 						</div>
-						<button class="btn button-default">{{$v->goods_name}}</button>
-					</div>	
-					<div class='col' s6></br></div>				
+					</div>
 				</div>	
-				@endforeach		
-			</div>
-			
-			<div class="row margin-bottom">
-			<div class="pagination-product">
-				<ul>
-					{{$list->links()}}
-				</ul>
-			</div>
-			<br>
+				<div class="review-form">
+					<div class="review-head">
+						<h5>Post Review in Below</h5>
+						<p>Lorem ipsum dolor sit amet consectetur*</p>
+					</div>
+					<input type="button" class="btn button-default" id="goods_id" onclick="goods()" value="加入购物车"><a href='/cart/cartadd/{{$goods->goods_id}}'>
+				</div>
 		</div>
 	</div>
-	<!-- end product -->
+	<!-- end shop single -->
 
-	
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
@@ -416,7 +409,7 @@
 	<div class="footer">
 		<div class="container">
 			<div class="about-us-foot">
-				<h6>商品列表</h6>
+				<h6>商品详情</h6>
 				<p>is a lorem ipsum dolor sit amet, consectetur adipisicing elit consectetur adipisicing elit.</p>
 			</div>
 			<div class="social-media">
@@ -427,19 +420,24 @@
 				<a href=""><i class="fa fa-instagram"></i></a>
 			</div>
 			<div class="copyright">
-				<span>© 2017 All Right Reserved</span>
+				<span>© 2019 All Right Reserved</span>
 			</div>
 		</div>
 	</div>
 	<!-- end footer -->
 	
 	<!-- scripts -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/materialize.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/fakeLoader.min.js"></script>
-	<script src="js/animatedModal.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/materialize.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/fakeLoader.min.js"></script>
+	<script src="/js/animatedModal.min.js"></script>
+	<script src="/js/main.js"></script>
 
 </body>
 </html>
+<script>
+	function goods(){
+		alert('加入购物车成功');
+	}
+</script>

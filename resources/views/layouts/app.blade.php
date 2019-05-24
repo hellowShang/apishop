@@ -45,10 +45,25 @@
             <img src="/img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
+<<<<<<< HEAD
+        <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
+        <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+        <li><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
+        <li><a href="/user/reg"><i class="fa fa-user-plus"></i>Register</a></li>
+        <li><a href="/user/address"><img src="/img/timg.jpg" style="width: 10%">&nbsp;&nbsp;&nbsp;<i class="fa fa-address-book"></i>Address</a></li>
+
+        <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>收货地址</a></li>
+        <li><a href="login.html"><i class="fa fa-sign-in"></i>登录</a></li>
+        <li><a href="register.html"><i class="fa fa-user-plus"></i>注册</a></li>
+
+=======
         <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
         <li><a href="/user/address"><i class="fa fa-envelope-o"></i>收货地址</a></li>
         <li><a href="/user/login"><i class="fa fa-sign-in"></i>登录</a></li>
         <li><a href="/user/reg"><i class="fa fa-user-plus"></i>注册</a></li>
+>>>>>>> 2e7208a1e03bfd4721c44d84f84013ef0232b3f9
     </ul>
 </div>
 <!-- end side nav right-->

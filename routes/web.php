@@ -12,6 +12,9 @@ Route::get('/home/index/','Controller\IndexController@index');
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
 
+//商品详情页展示
+Route::get('/goods/detail/{goods_id}','Controller\GoodsController@detail');
+
 //用户注册
 Route::get('/user/reg','Controller\UserController@reg');
 Route::post('/user/regadd','Controller\UserController@regadd');
