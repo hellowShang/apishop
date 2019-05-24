@@ -15,6 +15,7 @@ class OrderController extends Controller
 
     // 订单展示
     public function orderList(){
+//        $uid = $_COOKIE['uid'];
         $uid = 4;
         $orderInfo  = Order::where(['uid' => $uid,'order_status' => 1])->join('goods','goods.goods_id','=','order.goods_id')->get();
         $data = [

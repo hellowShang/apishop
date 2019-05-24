@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/favicon.png">
+    <script src="http://client.lab993.com/js/jquery.js"></script>
 </head>
 <body>
 <!-- navbar top -->

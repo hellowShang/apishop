@@ -1,13 +1,7 @@
 <?php
 
-// 首页
-Route::get('/', function () {
-    return view('index');
-});
-
-
 // * 前台首页
-Route::get('/home/index/','Controller\IndexController@index');
+Route::get('/','Controller\IndexController@index');
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
