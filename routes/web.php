@@ -22,6 +22,10 @@ Route::post('/user/loginadd','Controller\UserController@loginadd');
 Route::get('/user/address','Controller\AddressController@address');
 Route::any('/user/getaddress','Controller\AddressController@getaddress');
 Route::any('/user/addressadd','Controller\AddressController@addressadd');
+Route::any('/user/addresslist','Controller\AddressController@addresslist');
+Route::any('/user/addresslists','Controller\AddressController@addresslists');
+Route::any('/user/addressdel','Controller\AddressController@addressdel');
+Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
 //购物车
