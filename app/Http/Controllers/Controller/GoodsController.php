@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dell
- * Date: 2019/5/23
- * Time: 17:17
- */
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class GoodsController extends Controller
+{
+}

@@ -94,7 +94,7 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="cart.html" class="button-link">
+                    <a href="/cart/cartlist/" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
