@@ -110,11 +110,11 @@
                 <div class="col s6">
                     <div class="content">
                         <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="">
-                        <h6><a href="">{{$v->goods_name}}</a></h6>
+                        <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
                         </div>
-                        <button class="btn button-default click" gid="{{$v->goods_id}}">加入购物车</button>
+                        <button class="btn button-default goods" gid="{{$v->goods_id}}">加入购物车</button>
                     </div>
                     <div class="col s6"><br></div>
                 </div>
@@ -151,11 +151,11 @@
                 <div class="col s6">
                     <div class="content">
                         <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="">
-                        <h6><a href="">{{$v->goods_name}}</a></h6>
+                        <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
                         </div>
-                        <button class="btn button-default click" gid="{{$v->goods_id}}">加入购物车</button>
+                        <button class="btn button-default goods" gid="{{$v->goods_id}}">加入购物车</button>
                     </div>
                     <div class="col s6"><br></div>
                 </div>
@@ -175,7 +175,7 @@
     <div id="fakeLoader"></div>
     <!-- end loader -->
     <script>
-        $(".click").click(function(){
+        $(".goods").click(function(){
             var _this = $(this);
             var gid = _this.attr('gid');
             $.ajax({
