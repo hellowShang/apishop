@@ -17,5 +17,5 @@ class GoodsModel extends Model
     protected $table = 'goods';
     public $timestamps = false;
     public $primaryKey='goods_id';
-    
+
 }
