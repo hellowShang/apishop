@@ -7,7 +7,7 @@ Route::get('/', function () {
 
 
 // * 前台首页
-Route::get('/home/index','Controller\IndexController@index');
+Route::get('/home/index/','Controller\IndexController@index');
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
@@ -28,8 +28,9 @@ Route::any('/user/addressadd','Controller\AddressController@addressadd');
 
 
 //购物车
-Route::get('/cart/cartAdd/','CartController@cartAdd');
-Route::get('/cart/cartList/','CartController@cartList');
+Route::post('/cart/cartadd/','Controller\CartController@cartadd');
+Route::get('/cart/cartlist/','Controller\CartController@cartlist');
+Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 
 
 // 支付宝支付
@@ -38,3 +39,4 @@ Route::get('pay','Controller\PayController@pay');
 Route::get('success','Controller\PayController@success');
 // 异步通知
 Route::get('notify','Controller\PayController@notify');
+

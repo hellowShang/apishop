@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 namespace App\Http\Controllers\Controller;
 
 use App\Model\GoodsModel;
@@ -36,3 +37,12 @@ class GoodsController extends Controller
     	return view('goods.detail',$data);
     }
 }
+=======
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class GoodsController extends Controller
+{
+}
+>>>>>>> 2e7208a1e03bfd4721c44d84f84013ef0232b3f9

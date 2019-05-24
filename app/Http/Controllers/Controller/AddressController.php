@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cookie;
 use App\Model\AreaModel;
 use App\Model\AddressModel;
+
 class AddressController extends Controller
 {
     public function address(){
