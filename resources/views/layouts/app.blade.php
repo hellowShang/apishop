@@ -242,7 +242,7 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="/home/index/"><i class="fa fa-home"></i></a>
+            <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
