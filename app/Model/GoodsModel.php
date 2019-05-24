@@ -19,7 +19,5 @@ class GoodsModel extends Model
 
     public $primaryKey='goods_id';
 
-}
 
-    public $primaryKey = 'goods_id';
 }
