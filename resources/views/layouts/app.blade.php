@@ -17,12 +17,6 @@
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/favicon.png">
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/materialize.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/fakeLoader.min.js"></script>
-    <script src="/js/animatedModal.min.js"></script>
-    <script src="/js/main.js"></script>
 </head>
 <body>
 <!-- navbar top -->
@@ -94,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="cart.html" class="button-link">
+                    <a href="/cart/cartList/" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -126,12 +120,12 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="testimonial.html" class="button-link">
+                    <a href="/order/list" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-support"></i>
                             </div>
-                            Testimonial
+                            订单详情
                         </div>
                     </a>
                 </div>
@@ -320,5 +314,11 @@
     </div>
 </div>
 <!-- end footer -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/fakeLoader.min.js"></script>
+<script src="/js/animatedModal.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

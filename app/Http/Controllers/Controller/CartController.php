@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Model\CartModel;
 use App\Model\GoodsModel;
-
+use App\Http\Controllers\Controller;
 class CartController extends Controller
 {
     //加入购物车

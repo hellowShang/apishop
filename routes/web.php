@@ -25,9 +25,15 @@ Route::any('/user/addressadd','Controller\AddressController@addressadd');
 
 
 //购物车
-Route::get('/cart/cartAdd/','CartController@cartAdd');
-Route::get('/cart/cartList/','CartController@cartList');
+Route::get('/cart/cartAdd/','Controller\CartController@cartAdd');
+Route::get('/cart/cartList/','Controller\CartController@cartList');
 
+
+
+// 订单展示
+Route::get('/order/list','Controller\OrderController@orderList');
+// 订单删除
+Route::get('/order/deleteOrder','Controller\OrderController@deleteOrder');
 
 // 支付宝支付
 Route::get('pay','Controller\PayController@pay');
