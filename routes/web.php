@@ -26,12 +26,12 @@ Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
 //购物车
-
 Route::post('/cart/cartadd/','Controller\CartController@cartadd');
 Route::get('/cart/cartlist/','Controller\CartController@cartlist');
 Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 
-
+//订单生成
+Route::get('/order/create','Controller\OrderController@orderCreate');
 // 订单展示
 Route::get('/order/list','Controller\OrderController@orderList');
 // 订单删除
@@ -44,3 +44,5 @@ Route::get('success','Controller\PayController@success');
 // 异步通知
 Route::get('notify','Controller\PayController@notify');
 
+// 微信支付
+Route::get('wechatpay','Controller\WechatPayController@pay');
