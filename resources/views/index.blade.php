@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Laravel学院')
+@section('title', '首页')
 
 @section('sidebar')
     @parent

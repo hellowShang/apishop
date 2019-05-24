@@ -2,12 +2,6 @@
 
 @section('title', '购物车')
 
-@section('sidebar')
-    @parent
-@endsection
-
-@section('content')
-
 <!-- cart -->
 <div class="cart section">
     <div class="container">
@@ -138,9 +132,5 @@
 
 </script>
 @endsection
-
-
-
-
 
 

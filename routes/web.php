@@ -1,13 +1,7 @@
 <?php
 
-// 首页
-Route::get('/', function () {
-    return view('index');
-});
-
-
 // * 前台首页
-Route::get('/home/index/','Controller\IndexController@index');
+Route::get('/','Controller\IndexController@index');
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
@@ -32,10 +26,16 @@ Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
 //购物车
+
 Route::post('/cart/cartadd/','Controller\CartController@cartadd');
 Route::get('/cart/cartlist/','Controller\CartController@cartlist');
 Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 
+
+// 订单展示
+Route::get('/order/list','Controller\OrderController@orderList');
+// 订单删除
+Route::get('/order/deleteOrder','Controller\OrderController@deleteOrder');
 
 // 支付宝支付
 Route::get('pay','Controller\PayController@pay');

@@ -17,12 +17,7 @@
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/favicon.png">
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/materialize.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/fakeLoader.min.js"></script>
-    <script src="/js/animatedModal.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="http://client.lab993.com/js/jquery.js"></script>
 </head>
 <body>
 <!-- navbar top -->
@@ -45,25 +40,10 @@
             <img src="/img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
-<<<<<<< HEAD
-        <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-        <li><a href="/user/login"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="/user/reg"><i class="fa fa-user-plus"></i>Register</a></li>
-        <li><a href="/user/address"><img src="/img/timg.jpg" style="width: 10%">&nbsp;&nbsp;&nbsp;<i class="fa fa-address-book"></i>Address</a></li>
-
-        <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>收货地址</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-in"></i>登录</a></li>
-        <li><a href="register.html"><i class="fa fa-user-plus"></i>注册</a></li>
-
-=======
         <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
         <li><a href="/user/address"><i class="fa fa-envelope-o"></i>收货地址</a></li>
         <li><a href="/user/login"><i class="fa fa-sign-in"></i>登录</a></li>
         <li><a href="/user/reg"><i class="fa fa-user-plus"></i>注册</a></li>
->>>>>>> 2e7208a1e03bfd4721c44d84f84013ef0232b3f9
     </ul>
 </div>
 <!-- end side nav right-->
@@ -141,12 +121,12 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="testimonial.html" class="button-link">
+                    <a href="/order/list" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-support"></i>
                             </div>
-                            Testimonial
+                            订单详情
                         </div>
                     </a>
                 </div>
@@ -262,7 +242,7 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="/home/index/"><i class="fa fa-home"></i></a>
+            <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
@@ -303,5 +283,11 @@
     </div>
 </div>
 <!-- end footer -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/fakeLoader.min.js"></script>
+<script src="/js/animatedModal.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

@@ -36,14 +36,35 @@
 						</div>
 					</div>
 				</div>	
-				<div class="review-form">
+				<div class="review-form" gid="{{$goods->goods_id}}">
 					<div class="review-head">
 						<h5>Post Review in Below</h5>
 						<p>Lorem ipsum dolor sit amet consectetur*</p>
 					</div>
-					<input type="button" class="btn button-default" id="goods_id" onclick="goods()" value="加入购物车"><a href='/cart/cartadd/{{$goods->goods_id}}'>
+					<input type="button" class="btn button-default" id="goods_id" onclick="goods()" value="加入购物车">
 				</div>
 		</div>
 	</div>
-
+		<script>
+			function goods(){
+				var gid = $(".review-form").attr('gid');
+				$.ajax({
+					url:'/cart/cartadd/',
+					data:{gid:gid},
+					type:'post',
+					dateType: 'json',
+					async:true,
+					success:function(res){
+						if(res.errcode == 0){
+							alert(res.errmsg);
+						}else{
+							alert('error:'+res.errcode);
+						}
+					},
+					error:function(){
+						alert('出错了');
+					}
+				})
+			}
+		</script>
 @endsection
