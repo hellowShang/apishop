@@ -14,7 +14,7 @@ class IndexController extends Controller
         $newInfo = GoodsModel::where(['is_new'=>1])->get()->take(4);
 
         //网站推荐
-        $goodsInfo = GoodsModel::get();
+        $goodsInfo = GoodsModel::paginate(6);
         $data = [
             'newInfo' => $newInfo,
             'goodsInfo' => $goodsInfo

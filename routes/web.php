@@ -25,7 +25,7 @@ Route::any('/user/addressadd','Controller\AddressController@addressadd');
 
 
 //购物车
-Route::get('/cart/cartadd/','Controller\CartController@cartadd');
+Route::post('/cart/cartadd/','Controller\CartController@cartadd');
 Route::get('/cart/cartlist/','Controller\CartController@cartlist');
 Route::post('/cart/cartdel/','Controller\CartController@cartdel');
 

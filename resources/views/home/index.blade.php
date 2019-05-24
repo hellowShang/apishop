@@ -114,8 +114,9 @@
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
                         </div>
-                        <button class="btn button-default">ADD TO CART</button>
+                        <button class="btn button-default click" gid="{{$v->goods_id}}">加入购物车</button>
                     </div>
+                    <div class="col s6"><br></div>
                 </div>
                 @endforeach
             </div>
@@ -146,57 +147,24 @@
             </div>
 
             <div class="row">
+                @foreach($goodsInfo as $k=>$v)
                 <div class="col s6">
                     <div class="content">
-                        <img src="/img/product-new1.png" alt="">
-                        <h6><a href="">Fashion Men's</a></h6>
+                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="">
+                        <h6><a href="">{{$v->goods_name}}</a></h6>
                         <div class="price">
-                            $20 <span>$28</span>
+                            ${{$v->self_price}} <span>${{$v->market_price}}</span>
                         </div>
-                        <button class="btn button-default">ADD TO CART</button>
+                        <button class="btn button-default click" gid="{{$v->goods_id}}">加入购物车</button>
                     </div>
+                    <div class="col s6"><br></div>
                 </div>
-                <div class="col s6">
-                    <div class="content">
-                        <img src="/img/product-new2.png" alt="">
-                        <h6><a href="">Fashion Men's</a></h6>
-                        <div class="price">
-                            $20 <span>$28</span>
-                        </div>
-                        <button class="btn button-default">ADD TO CART</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s6">
-                    <div class="content">
-                        <img src="/img/product-new3.png" alt="">
-                        <h6><a href="">Fashion Men's</a></h6>
-                        <div class="price">
-                            $20 <span>$28</span>
-                        </div>
-                        <button class="btn button-default">ADD TO CART</button>
-                    </div>
-                </div>
-                <div class="col s6">
-                    <div class="content">
-                        <img src="/img/product-new4.png" alt="">
-                        <h6><a href="">Fashion Men's</a></h6>
-                        <div class="price">
-                            $20 <span>$28</span>
-                        </div>
-                        <button class="btn button-default">ADD TO CART</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="pagination-product">
                 <ul>
-                    <li class="active">1</li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5</a></li>
+                    <li>{{$goodsInfo->links()}}</li>
                 </ul>
             </div>
         </div>
@@ -206,4 +174,27 @@
     <!-- loader -->
     <div id="fakeLoader"></div>
     <!-- end loader -->
+    <script>
+        $(".click").click(function(){
+            var _this = $(this);
+            var gid = _this.attr('gid');
+            $.ajax({
+                url:'/cart/cartadd/',
+                data:{gid:gid},
+                type:'post',
+                dateType: 'json',
+                async:true,
+                success:function(res){
+                    if(res.errcode == 0){
+                        alert(res.errmsg);
+                    }else{
+                        alert('error:'+res.errcode);
+                    }
+                },
+                error:function(){
+                    alert('出错了');
+                }
+            })
+        })
+    </script>
 @endsection

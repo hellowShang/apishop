@@ -5,31 +5,30 @@ namespace App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\CartModel;
-use App\Model\GoodsModel;
 
 class CartController extends Controller
 {
     //加入购物车
     public function cartadd(Request $request)
     {
-        $goods_id = $request->input('id');
-        $user_id = Cookie::get('');
+        $goods_id = $request->input('gid');
+        $user_id = $_COOKIE['uid'];
         if(empty($goods_id)){
-            header('Refeash:2;url=');
+            header('Refeash:2;url=/home/index/');
             echo '商品不存在，请重新选择。';
         }
         if(empty($user_id)){
-            header('Refeash:2;url=');
+            header('Refeash:2;url=/home/index/');
             echo '请先登录';
         }
         //入库
         $info = [
             'user_id' => $user_id,
             'goods_id' => $goods_id,
-            'cart_quantitay' => 1,     //购买数量  默认为 1
+            'cart_quantity' => 1,     //购买数量  默认为 1
             'create_time' => time()
         ];
-        $id = CartModel::insetGetId($info);
+        $id = CartModel::insertGetId($info);
         if($id){
             $response = [
                 'errcode' => 0,
