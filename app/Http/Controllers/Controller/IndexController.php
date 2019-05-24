@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 class IndexController extends Controller
 {
     //主页
-    public function index(){
+    public function index()
+    {
         //最新商品
-        $newInfo = GoodsModel::where(['is_new'=>1])->get()->take(4);
+        $newInfo = GoodsModel::where(['is_new' => 1])->get()->take(4);
 
         //网站推荐
         $goodsInfo = GoodsModel::paginate(6);
@@ -19,6 +20,7 @@ class IndexController extends Controller
             'newInfo' => $newInfo,
             'goodsInfo' => $goodsInfo
         ];
-        return view('home.index',$data);
+        return view('home.index', $data);
     }
+
 }
