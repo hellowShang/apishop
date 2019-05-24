@@ -42,7 +42,13 @@ Route::get('pay','Controller\PayController@pay');
 // 同步通知
 Route::get('success','Controller\PayController@success');
 // 异步通知
-Route::get('notify','Controller\PayController@notify');
+Route::post('notify','Controller\PayController@notify');
 
 // 微信支付
 Route::get('wechatpay','Controller\WechatPayController@pay');
+// 微信异步
+Route::post('wechatnotify','Controller\WechatPayController@notify');
+// 微信轮询
+Route::get('payStatus','Controller\WechatPayController@payStatus');
+// 支付成功提示
+Route::get('success','Controller\WechatPayController@success');
