@@ -72,6 +72,7 @@
                     {goods_id:goods_id},
                     function(res){
                         alert(res.msg);
+                        history.go(0);
                     },
                     'json'
                 );
