@@ -1,7 +1,12 @@
 <?php
 
 // * 前台首页
-Route::get('/','Controller\IndexController@index');
+//Route::get('/','Controller\IndexController@index');
+Route::get('/',function(){
+    $str = file_get_contents('php://input');
+    echo "<pre>";print_r(json_decode($str,true));echo "</pre>";die;
+});
+
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
