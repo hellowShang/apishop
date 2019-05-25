@@ -116,6 +116,7 @@
                             ￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
                         </div>
                         <button class="btn button-default goods" gid="{{$v->goods_id}}">加入购物车</button>
+                        <button class="btn button-default collect" goods_id="{{$v->goods_id}}">收藏</button>
                     </div>
                     <div class="col s6"><br></div>
                 </div>
@@ -157,6 +158,7 @@
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
                         </div>
                         <button class="btn button-default goods" gid="{{$v->goods_id}}">加入购物车</button>
+                        <button class="btn button-default collect" goods_id="{{$v->goods_id}}">收藏</button>
                     </div>
                     <div class="col s6"><br></div>
                 </div>
@@ -196,6 +198,19 @@
                     alert('出错了');
                 }
             })
-        })
+        });
+
+        // 收藏
+        $(document).on('click','.collect',function(){
+            var goods_id = $(this).attr('goods_id');
+            $.post(
+                '/collect',
+                {goods_id:goods_id},
+                function(res){
+                    alert(res.msg)
+                },
+                'json'
+            );
+        });
     </script>
 @endsection

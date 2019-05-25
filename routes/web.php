@@ -1,12 +1,7 @@
 <?php
 
 // * 前台首页
-//Route::get('/','Controller\IndexController@index');
-Route::get('/',function(){
-    $str = file_get_contents('php://input');
-    echo "<pre>";print_r(json_decode($str,true));echo "</pre>";die;
-});
-
+Route::get('/','Controller\IndexController@index');
 
 //商品列表展示
 Route::get('/goodslist','Controller\GoodsController@goodslist');
@@ -57,3 +52,11 @@ Route::post('wechatnotify','Controller\WechatPayController@notify');
 Route::get('payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
 Route::get('wechatsuccess','Controller\WechatPayController@success');
+
+
+// 加入收藏
+Route::post('collect','Controller\CollectController@collect');
+// 收藏展示
+Route::get('collectlist','Controller\CollectController@collectShow');
+// 删除收藏
+Route::get('delcollect','Controller\CollectController@delCollect');
