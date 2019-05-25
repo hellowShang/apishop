@@ -109,7 +109,7 @@
                 @foreach($newInfo as $k=>$v)
                 <div class="col s6">
                     <div class="content">
-                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="">
+                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" style="width:80%; height:50%;" alt=""></a>
                         <h6><a href="">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
