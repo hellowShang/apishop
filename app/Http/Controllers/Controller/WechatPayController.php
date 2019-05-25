@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Model\Order;
 
 class WechatPayController extends Controller
 {
@@ -142,6 +143,8 @@ class WechatPayController extends Controller
             $sign = true;
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
+                $order_no = $xml->out_trade_no;
+                Order::where('order_no',$order_no)->update(['pay_status' => 2]);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
