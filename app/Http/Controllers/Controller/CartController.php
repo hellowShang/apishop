@@ -56,6 +56,7 @@ class CartController extends Controller
         $data = [
             'cartInfo' => $cartInfo
         ];
+
         return view('cart.cartList',$data);
     }
 

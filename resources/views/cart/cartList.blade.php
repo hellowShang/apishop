@@ -2,6 +2,7 @@
 
 @section('title', '购物车')
 
+@section('content')
 <!-- cart -->
 <div class="cart section">
     <div class="container">
@@ -10,7 +11,7 @@
         </div>
         <div class="content">
             @foreach($cartInfo as $k=>$v)
-                <div class="cart-1 goods" gprice="{{$v->self_price}}" >
+                <div class="cart-1 goods" gid="{{$v->goods_id}}" gprice="{{$v->self_price}}" >
                     <div class="row">
                         <div class="col s5">
                             <h5>商品图片</h5>
@@ -75,7 +76,8 @@
                 </div>
             </div>
         </div>
-        <button class="btn button-default">Process to Checkout</button>
+        <button class="btn button-default order"  pay_type="1">支付宝结算</button>
+        <button class="btn button-default order"  pay_type="2">微信结算</button>
     </div>
 </div>
 <!-- end cart -->
@@ -130,6 +132,32 @@
     })
 
 
+    // 下单
+    $(document).on('click','.order',function(){
+        var pay_type = $(this).attr('pay_type');
+        var goods_id = '';
+        $('.goods').each(function(index){
+           goods_id += $(this).attr('gid')+',';
+        });
+
+        $.get(
+            '/order/create',
+            {goods_id:goods_id},
+            function(res){
+                if(res.errcode == 0){
+                    alert(res.msg);
+                    if(pay_type == 1){
+                        location.href = '/pay?order_no='+res.data.order_no;
+                    }else{
+                        location.href = '/wechatpay?order_no='+res.data.order_no;
+                    }
+                }else{
+                    alert('下单失败');
+                }
+            },
+            'json'
+        );
+    });
 </script>
 @endsection
 
