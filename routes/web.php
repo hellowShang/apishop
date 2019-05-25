@@ -51,4 +51,4 @@ Route::post('wechatnotify','Controller\WechatPayController@notify');
 // 微信轮询
 Route::get('payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
-Route::get('success','Controller\WechatPayController@success');
+Route::get('wechatsuccess','Controller\WechatPayController@success');
