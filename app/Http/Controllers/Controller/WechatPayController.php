@@ -25,17 +25,35 @@ class WechatPayController extends Controller
     public function pay(){
         $total_fee =1;                                              // 支付金额
         $out_trade_no = $_GET['order_no'];                          // 订单号
-        $info = [
-            'appid' => env('APPID'),                        // 公众账号ID
-            'mch_id' => env('MCH_ID'),                      // 商户号
-            'nonce_str' => Str::random(16),                       // 随机字符串
-            'body' => '微信订单支付',                                 // 商品描述
-            'out_trade_no' => $out_trade_no,                      // 商户订单号
-            'total_fee' => $total_fee,                             // 标价金额
-            'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],          // 客户端ip
-            'notify_url' => $this->notify,                        // 异步通知地址
-            'trade_type' =>'NATIVE'                                // 交易类型
-        ];
+
+        // 判断PC还是手机
+        $server_str = substr($_SERVER['HTTP_USER_AGENT'],strpos($_SERVER['HTTP_USER_AGENT'],'('),strpos($_SERVER['HTTP_USER_AGENT'],')')-10);
+        if(substr_count($server_str,'Windows')){
+            $info = [
+                'appid' => env('APPID'),                        // 公众账号ID
+                'mch_id' => env('MCH_ID'),                      // 商户号
+                'nonce_str' => Str::random(16),                       // 随机字符串
+                'body' => '微信订单支付',                                 // 商品描述
+                'out_trade_no' => $out_trade_no,                      // 商户订单号
+                'total_fee' => $total_fee,                             // 标价金额
+                'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],          // 客户端ip
+                'notify_url' => $this->notify,                        // 异步通知地址
+                'trade_type' => 'NATIVE'                                // 交易类型
+            ];
+        }else{
+            $info = [
+                'appid' => env('APPID'),                        // 公众账号ID
+                'mch_id' => env('MCH_ID'),                      // 商户号
+                'nonce_str' => Str::random(16),                       // 随机字符串
+                'body' => '微信订单支付',                                 // 商品描述
+                'out_trade_no' => $out_trade_no,                      // 商户订单号
+                'total_fee' => $total_fee,                             // 标价金额
+                'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],          // 客户端ip
+                'notify_url' => $this->notify,                        // 异步通知地址
+                'trade_type' => 'JSAPI'                                // 交易类型
+            ];
+        }
+
         $this->values = $info;
         // 签名
         $this->getSign();
@@ -45,12 +63,15 @@ class WechatPayController extends Controller
         $arr = $this-> postXmlCurl($XMLInfo,$this->url);
 
         echo "<pre>";print_r($arr);echo "</pre>";die;
+        if(substr_count($server_str,'Windows')){
+            // XML数据转化成对象
+            $data = simplexml_load_string($arr);
 
-        // XML数据转化成对象
-        $data = simplexml_load_string($arr);
+            // 将 code_url 返回给前端，前端生成 支付二维码
+            return view("wechat.pay",['code_url' => $data->code_url,'order_sn' => $out_trade_no]);
+        }else{
 
-        // 将 code_url 返回给前端，前端生成 支付二维码
-        return view("wechat.pay",['code_url' => $data->code_url,'order_sn' => $out_trade_no]);
+        }
     }
     /**
      * 设计签名
@@ -186,11 +207,8 @@ class WechatPayController extends Controller
         header('location:'.$url);
     }
 
-    // 微信网页授权获取信息
-     public function wechatLogin(){
-        // 获取code
-        $code = $_GET['code'];
-
+    // 微信网页授权获取用户信息
+     public function wechatLogin($code){
         // 获取access_token
         $access_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHATAPPID').'&secret='.env('WECAHTAPPSECRET').'&code='.$code.'&grant_type=authorization_code';
         $access_response = json_decode(file_get_contents($access_url),true);
@@ -199,43 +217,47 @@ class WechatPayController extends Controller
             $access_token = $access_response['access_token'];
         }
 
-        // 检测access_token是否有效
-        $check_url = 'https://api.weixin.qq.com/sns/auth?access_token='.$access_token.'&openid='.$openid;
-        $check_response = json_decode(file_get_contents($check_url),true);
-        if($check_response['errcode'] == 0){
-            // 获取用户信息
-            $getUserInfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
-            $user_response = json_decode(file_get_contents($getUserInfo_url),true);
+        // 获取用户信息
+        $getUserInfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+        $user_response = json_decode(file_get_contents($getUserInfo_url),true);
+        return $user_response;
+     }
 
-            // 判断是否关注   关注：欢迎   未关注：入库并欢迎
-            $arr = WechatUserModel::where('openid',$openid)->first();
-            if($arr){ // 关注
-                if($arr['uid'] == ''){
-                    echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
-                }
-            }else{ // 未关注
-                // 首次登录，数据入库
-                $info = [
-                    'sub_status' => 1,
-                    'openid' => $user_response['openid'],
-                    'nickname' => $user_response['nickname'],
-                    'sex' => $user_response['sex'],
-                    'city' => $user_response['city'],
-                    'province' => $user_response['province'],
-                    'country' => $user_response['country'],
-                    'headimgurl' => $user_response['headimgurl'],
-                    'subscribe_time' => time()
-                ];
+     // 微信用户信息入库
+    public function userInfoAdd(){
+        // 获取code
+        $code = $_GET['code'];
+        // 获取用户信息
+        $user_response = $this->wechatLogin($code);
+        $openid = $user_response['openid'];
+        // 判断是否关注   关注：欢迎   未关注：入库并欢迎
+        $arr = WechatUserModel::where('openid',$openid)->first();
+        if($arr){ // 关注
+            if($arr['uid'] == ''){
+                echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
+            }
+        }else{ // 未关注
+            // 首次登录，数据入库
+            $info = [
+                'sub_status' => 1,
+                'openid' => $user_response['openid'],
+                'nickname' => $user_response['nickname'],
+                'sex' => $user_response['sex'],
+                'city' => $user_response['city'],
+                'province' => $user_response['province'],
+                'country' => $user_response['country'],
+                'headimgurl' => $user_response['headimgurl'],
+                'subscribe_time' => time()
+            ];
 
-                $res = WechatUserModel::insert($info);
-                if($res){
-                    echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
-                }else{
-                    echo "<script>alert( '授权失败，请重新授权');location.href='/user/login'</script>";
-                }
+            $res = WechatUserModel::insert($info);
+            if($res){
+                echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
+            }else{
+                echo "<script>alert( '授权失败，请重新授权');location.href='/user/login'</script>";
             }
         }
-     }
+    }
 
      // 绑定已有账号页面
     public function account(){
