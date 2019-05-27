@@ -70,8 +70,8 @@ Route::get('/delcollect','Controller\CollectController@delCollect');
 
 // 微信网页授权重定向
 Route::get('/wechatredirect','Controller\WechatPayController@wechatRedirect');
-// 微信网页授权
-Route::get('/wechatlogin','Controller\WechatPayController@wechatLogin');
+// 微信网页授权用户信息入库
+Route::get('/wechatlogin','Controller\WechatPayController@userInfoAdd');
 // 绑定已有账号
 Route::get('/account','Controller\WechatPayController@account');
 Route::post('/accountdo','Controller\WechatPayController@accountDo');
