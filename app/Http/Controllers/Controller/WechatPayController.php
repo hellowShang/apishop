@@ -249,14 +249,19 @@ class WechatPayController extends Controller
     public function accountDo(){
         $account = request()->account;
         $openid = request()->openid;
+        $pass = request()->password;
         $arr = UsreModel::where('name',$account)->first();
         if($arr){
-            $res = WechatUserModel::where('openid',$openid)->update(['uid' => $arr['uid']]);
-            if($res){
-                setcookie('uid',$arr->uid,time()+86400,'/',env('YUMING'),false,true);
-                echo json_encode(['msg' => '绑定成功','num' => 2]);
+            if($pass == $arr['pass']){
+                $res = WechatUserModel::where('openid',$openid)->update(['uid' => $arr['uid']]);
+                if($res){
+                    setcookie('uid',$arr->uid,time()+86400,'/',env('YUMING'),false,true);
+                    echo json_encode(['msg' => '绑定成功','num' => 2]);
+                }else{
+                    die(json_encode(['msg' => '绑定失败']));
+                }
             }else{
-                die(json_encode(['msg' => '绑定失败']));
+                die(json_encode(['msg' => '密码错误']));
             }
         }else{
             die(json_encode(['msg' => '请先注册账号，再绑定','num' => 1]));
