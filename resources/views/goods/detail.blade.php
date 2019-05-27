@@ -15,6 +15,32 @@
 			<br class="shop-single">
 			<h1 align="center">商品详情</h1><br>
 				<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}  " alt="" style="width:300px;height:300px;border:1px solid #0b0b0b;">
+			<br>
+			<div class="slider">
+				<ul class="slides">
+					<li>
+						<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_imgs}}" alt="">
+						<div class="caption slider-content ">
+							<h2>{{$goods->goods_name}}</h2>
+							<a href="" class="btn button-default">SHOP NOW</a>
+						</div>
+					</li>
+					<li>
+						<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_imgs}}" alt="">
+						<div class="caption slider-content  center-align">
+							<h2>{{$goods->goods_name}}</h2>
+							<a href="" class="btn button-default">SHOP NOW</a>
+						</div>
+					</li>
+					<li>
+						<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_imgs}}" alt="">
+						<div class="caption slider-content  center-align">
+							<h2>{{$goods->goods_name}}</h2>
+							<a href="" class="btn button-default">SHOP NOW</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 				<div class="price">￥{{$goods->self_price}} <span>￥{{$goods->market_price}}</span></div>
 				库存：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_score}}&nbsp;&nbsp;&nbsp;</b>
 				数量：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_num}}&nbsp;&nbsp;&nbsp;</b><br>

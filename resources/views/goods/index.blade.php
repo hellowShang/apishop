@@ -29,7 +29,7 @@
 				@foreach($list as $k=>$v)	
 				<div class="col s6" >				
 					<div class="content">
-						<a href='/goods/detail/{{$v->goods_id}}'><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
+						<a href='/goods/detail/{{$v->goods_id}}'><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:200px;height:200px;"></a>
 						<h6><a href="/goods/detail/{{$v->goods_id}}"><span>{{$v->goods_name}}</span></a></h6>
 						<div class="price">
 							价格：￥{{$v->self_price}} <span>￥{{$v->market_price}}</span>

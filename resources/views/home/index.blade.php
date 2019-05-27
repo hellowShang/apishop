@@ -110,7 +110,7 @@
                 <div class="col s6">
                     <div class="content">
                         <h6><a href="">{{$v->goods_name}}</a></h6>
-                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
+                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:200px;height:200px;"></a>
                         <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
@@ -139,7 +139,7 @@
                     <div class="col s6">
                         <div class="content">
                             <h6><a href="">{{$v->goods_name}}</a></h6>
-                            <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
+                            <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:200px;height:200px;"></a>
                             <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                             <div class="price">
                                 ￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
@@ -177,11 +177,11 @@
                 <div class="divider-bottom"></div>
             </div>
 
-            <div class="row">
+            <div class="row" >
                 @foreach($goodsInfo as $k=>$v)
-                <div class="col s6">
-                    <div class="content">
-                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;">
+                <div class="col s6" >
+                    <div class="content" >
+                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:200px;height:200px;"></a>
                         <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
@@ -196,7 +196,7 @@
 
             <div class="pagination-product">
                 <ul>
-                    <li>{{$goodsInfo->links()}}</li>
+                    {{$goodsInfo->links()}}
                 </ul>
             </div>
         </div>
