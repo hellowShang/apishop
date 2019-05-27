@@ -210,7 +210,9 @@ class WechatPayController extends Controller
             // 判断是否关注   关注：欢迎   未关注：入库并欢迎
             $arr = WechatUserModel::where('openid',$openid)->first();
             if($arr){ // 关注
-                echo "<font size='16px'>你好" . $arr['nickname'] . "欢迎回来</font>";
+                if($arr['uid'] == ''){
+                    echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
+                }
             }else{ // 未关注
                 // 首次登录，数据入库
                 $info = [
