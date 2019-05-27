@@ -19,7 +19,7 @@
             <div class="container">
                  @foreach($orderInfo as $k=> $v)
                     <div class="shop-single">
-                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}">
+                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" style="width:300px;height:300px; border:1px solid #0b0b0b;">
                         <h5>{{$v->goods_name}}</h5>
                         <div class="price">${{$v->self_price}} <span>${{$v->market_price}}</span></div>
                         <p>{{$v->goods_desc}}</p>
