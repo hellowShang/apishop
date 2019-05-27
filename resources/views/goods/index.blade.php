@@ -35,7 +35,7 @@
 							价格：￥{{$v->self_price}} <span>￥{{$v->market_price}}</span>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：<b>{{$v->goods_score}}</b>
 						</div>
-						<button class="btn button-default">{{$v->goods_name}}</button>
+						<button class="btn button-default goods" gid="{{$v->goods_id}}" >加入购物车</button>
 						<button class="btn button-default collect" goods_id="{{$v->goods_id}}">收藏</button>
 					</div>
 					<div class="col s6"></div></br>					
@@ -55,4 +55,27 @@
 	</div>
 
 	</div>
+	<script>
+        $(".goods").click(function(){
+            var _this = $(this);
+            var gid = _this.attr('gid');
+            $.ajax({
+                url:'/cart/cartadd/',
+                data:{gid:gid},
+                type:'post',
+                dateType: 'json',
+                async:true,
+                success:function(res){
+                    if(res.errcode == 0){
+                        alert(res.errmsg);
+                    }else{
+                        alert('error:'+res.errcode);
+                    }
+                },
+                error:function(){
+                    alert('加入购物车失败');
+                }
+            })
+        });
+	</script>
  @endsection
