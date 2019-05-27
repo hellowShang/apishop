@@ -21,16 +21,30 @@ class PayController extends Controller
             die('该订单已删除');
         }
 
+        // 判断浏览端是PC还是手机
+        $usr_agent_str = substr($_SERVER['HTTP_USER_AGENT'],strpos($_SERVER['HTTP_USER_AGENT'],'('),strpos($_SERVER['HTTP_USER_AGENT'],')')-10);
+        if(substr_count($usr_agent_str,'Windows')){
+            // PC支付
+            $method = 'alipay.trade.page.pay';
+            // 销售产品码
+            $product_code = 'FAST_INSTANT_TRADE_PAY';
+        }else{
+            // 手机支付
+            $method = 'alipay.trade.wap.pay';
+            // 销售产品码
+            $product_code = 'QUICK_WAP_WAY';
+        }
+
         $order_data = [
             'subject'       => '商品订单支付',
             'out_trade_no'  => $order_no,
             'total_amount'  => $arr->order_amount,
-            'product_code'  => 'QUICK_WAP_WAY',
+            'product_code'  => $product_code,
         ];
 
         $data = [
             'app_id'        => env('APP_ID'),
-            'method'        => 'alipay.trade.wap.pay',
+            'method'        => $method,
             'format'        => 'JSON',
             'return_url'    => env('RETURN_URL'),
             'charset'       => 'utf-8',
