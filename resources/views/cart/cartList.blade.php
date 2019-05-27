@@ -17,7 +17,7 @@
                             <h5>商品图片</h5>
                         </div>
                         <div class="col s7">
-                            <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="400px">
+                            <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="400px" style="width:300px;height:300px;"></a>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                             <h5>商品单价</h5>
                         </div>
                         <div class="col s7">
-                            <h5>${{$v->self_price}}</h5>
+                            <h5>￥{{$v->self_price}}</h5>
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +92,7 @@
         var self_price = $(this).attr('gprice');
         total += parseInt(self_price);
     });
-    $("#total").text('$'+total);
+    $("#total").text('￥'+total);
 
     //删除
     $('.fa-trash').click(function(){
@@ -120,7 +120,7 @@
                         var self_price = $(this).attr('gprice');
                         newtotal += parseInt(self_price);
                     });
-                    $("#total").text('$'+newtotal);
+                    $("#total").text('￥'+newtotal);
                 }else{
                    alert('errcode:'+res.errcode);
                 }

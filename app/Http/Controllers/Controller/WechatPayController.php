@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Controller;
 
+use App\Model\WechatUserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ class WechatPayController extends Controller
     public $url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     // 异步回调
     public $notify = "http://apishop.lab993.com/wechatnotify";
+
     /**
      * 测试-微信支付
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -40,6 +42,8 @@ class WechatPayController extends Controller
         $XMLInfo = $this-> ToXml();
         // 请求支付接口
         $arr = $this-> postXmlCurl($XMLInfo,$this->url);
+
+        echo "<pre>";print_r($arr);echo "</pre>";die;
 
         // XML数据转化成对象
         $data = simplexml_load_string($arr);
@@ -173,4 +177,60 @@ class WechatPayController extends Controller
         $order_sn = request()->order_sn;
         return view('wechat.success',['order_sn' => $order_sn]);
     }
+
+    // 微信网页授权重定向
+    public function wechatRedirect(){
+        $redirect_url = urlencode('http://apishop.lab993.com/wechatlogin');
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHATAPPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        header('location:'.$url);
+    }
+
+    // 微信网页授权获取信息
+     public function wechatLogin(){
+        // 获取code
+        $code = $_GET['code'];
+
+        // 获取access_token
+        $access_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHATAPPID').'&secret='.env('WECAHTAPPSECRET').'&code='.$code.'&grant_type=authorization_code';
+        $access_response = json_decode(file_get_contents($access_url),true);
+        if(!isset($access_response['errcode'])){
+            $openid = $access_response['openid'];
+            $access_token = $access_response['access_token'];
+        }
+
+        // 检测access_token是否有效
+        $check_url = 'https://api.weixin.qq.com/sns/auth?access_token='.$access_token.'&openid='.$openid;
+        $check_response = json_decode(file_get_contents($check_url),true);
+        if($check_response['errcode'] == 0){
+            // 获取用户信息
+            $getUserInfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+            $user_response = json_decode(file_get_contents($getUserInfo_url),true);
+
+            // 判断是否关注   关注：欢迎   未关注：入库并欢迎
+            $arr = WechatUserModel::where('openid',$openid)->first();
+            if($arr){ // 关注
+                echo "<font size='16px'>你好" . $arr['nickname'] . "欢迎回来</font>";
+            }else{ // 未关注
+                // 首次登录，数据入库
+                $info = [
+                    'sub_status' => 1,
+                    'openid' => $user_response['openid'],
+                    'nickname' => $user_response['nickname'],
+                    'sex' => $user_response['sex'],
+                    'city' => $user_response['city'],
+                    'province' => $user_response['province'],
+                    'country' => $user_response['country'],
+                    'headimgurl' => $user_response['headimgurl'],
+                    'create_time' => time()
+                ];
+
+                $res = WechatUserModel::insert($info);
+                if($res){
+                    echo "<script>confirm( '是否绑定已有账号');location.href='/user/login'</script>";
+                }else{
+                    echo "<script>alert( '授权失败，请重新授权');location.href='/user/login'</script>";
+                }
+            }
+        }
+     }
 }

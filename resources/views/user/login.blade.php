@@ -19,7 +19,10 @@
                         <div class="input-field">
                             <input type="password" name="pass" class="validate" placeholder="PASSWORD" required>
                         </div>
-                        <button class="btn button-default">LOGIN</button>
+                        <div>
+                            <button class="btn button-default">LOGIN</button>
+                            <a href="/wechatredirect"><img src="/img/wechat.png" class="button-default" style="float: right;border: none;"></a>
+                        </div>
                     </form>
                 </div>
             </div>

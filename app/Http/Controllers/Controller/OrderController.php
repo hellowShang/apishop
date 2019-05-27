@@ -12,6 +12,10 @@ class OrderController extends Controller
     public function orderCreate(){
         $goods_id = request()->goods_id;
         $uid = $_COOKIE['uid'];
+        if(!$uid){
+            echo '请先登录';
+            header('Refresh:3;url=/user/login');
+        }
         $goods_id = rtrim($goods_id,',');
         if(strpos($goods_id,',')){
             $goods_id = explode(',',$goods_id);
@@ -123,6 +127,10 @@ class OrderController extends Controller
     // 订单展示
     public function orderList(){
         $uid = $_COOKIE['uid'];
+        if(!$uid){
+            echo '请先登录';
+            header('Refresh:3;url=/user/login');
+        }
         $orderInfo  = DB::table('order_detail')->where(['uid' => $uid,'status' => 1])->join('goods','goods.goods_id','=','order_detail.goods_id')->get();
         $data = [
             'orderInfo'     => $orderInfo

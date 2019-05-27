@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s4">
-                    <a href="/home/index/" class="button-link">
+                    <a href="/" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-home"></i>
@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="about-us.html" class="button-link">
+                    <a href="/user/center" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-user"></i>
@@ -254,12 +254,12 @@
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="/cart/cartlist/" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
+                <a href="/cart/cartlist" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
                 <span>2</span>
             </div>
         </div>
         <div class="col s2">
-            <a href="contact.html"><i class="fa fa-envelope-o"></i></a>
+            <a href="user/address"><i class="fa fa-envelope-o"></i></a>
         </div>
         <div class="col s2">
             <a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
