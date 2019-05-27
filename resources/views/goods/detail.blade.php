@@ -13,8 +13,7 @@
 		<div class="container">
 			
 			<div class="shop-single">
-				<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}  " alt="" style="width:400px;height:400px;border:1px solid silver;">
-				<h5></h5>
+				<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}  " alt="" style="width:400px;height:400px;border:1px solid #0b0b0b;">
 				<div class="price">￥{{$goods->self_price}} <span>￥{{$goods->market_price}}</span></div>
 				库存：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_score}}&nbsp;&nbsp;&nbsp;</b>
 				数量：&nbsp;&nbsp;&nbsp;<b>{{$goods->goods_num}}&nbsp;&nbsp;&nbsp;</b><br>
