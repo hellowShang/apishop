@@ -77,5 +77,17 @@
                 }
             })
         });
+        // 收藏
+        $(document).on('click','.collect',function(){
+            var goods_id = $(this).attr('goods_id');
+            $.post(
+                '/collect',
+                {goods_id:goods_id},
+                function(res){
+                    alert(res.msg)
+                },
+                'json'
+            );
+        });
 	</script>
  @endsection

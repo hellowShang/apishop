@@ -125,6 +125,35 @@
 
         </div>
     </div>
+
+    <div class="section product">
+        <div class="container">
+            <div class="section-head">
+                <h4>最热商品</h4>
+                <div class="divider-top"></div>
+                <div class="divider-bottom"></div>
+            </div>
+
+            <div class="row">
+                @foreach($hotInfo as $k=>$v)
+                    <div class="col s6">
+                        <div class="content">
+                            <h6><a href="">{{$v->goods_name}}</a></h6>
+                            <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
+                            <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
+                            <div class="price">
+                                ￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
+                            </div>
+                            <button class="btn button-default goods" gid="{{$v->goods_id}}">加入购物车</button>
+                            <button class="btn button-default collect" goods_id="{{$v->goods_id}}">收藏</button>
+                        </div>
+                        <div class="col s6"><br></div>
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </div>
     <!-- end product -->
 
     <!-- promo -->
