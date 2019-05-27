@@ -73,7 +73,8 @@
                     }
                 },
                 error:function(){
-                    alert('加入购物车失败');
+                    alert('您还没有登录，请先登录');
+                    location.href='/user/login';
                 }
             })
         });
