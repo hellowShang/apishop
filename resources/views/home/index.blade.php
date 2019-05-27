@@ -110,7 +110,7 @@
                 <div class="col s6">
                     <div class="content">
                         <h6><a href="">{{$v->goods_name}}</a></h6>
-                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:100%;height:70%;"></a>
+                        <a href="/goods/detail/{{$v->goods_id}}"><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
                         <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ￥{{$v->self_price}}<span>￥{{$v->market_price}}</span>
@@ -151,7 +151,7 @@
                 @foreach($goodsInfo as $k=>$v)
                 <div class="col s6">
                     <div class="content">
-                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="">
+                        <img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;">
                         <h6><a href="/goods/detail/{{$v->goods_id}}">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->self_price}} <span>${{$v->market_price}}</span>
