@@ -82,20 +82,20 @@ class GoodsController extends Controller
         $grid = new Grid(new GoodsModel);
 
         $grid->goods_id('Goods id');
-        $grid->goods_name('Goods name');
-        $grid->self_price('Self price');
-        $grid->market_price('Market price');
-        $grid->goods_num('Goods num');
-        $grid->goods_score('Goods score');
-        $grid->goods_desc('Goods desc');
-        $grid->is_up('Is up');
-        $grid->is_new('Is new');
-        $grid->is_best('Is best');
-        $grid->is_hot('Is hot');
-        $grid->goods_img('Goods img');
-        $grid->goods_imgs('Goods imgs');
-        $grid->create_time('Create time');
-        $grid->update_time('Update time');
+        $grid->goods_name('商品名称');
+        $grid->self_price('商品价格');
+        $grid->market_price('市场价格');
+        $grid->goods_num('商品库存');
+        $grid->is_new('新品')->using(['1' => '是', '2' => '否']);
+        $grid->goods_img('商品图片')->display(function ($images) {
+            return 'http://www.lab993.com/uploads/goodsimgs/'. $images;
+        })->image('100','100');
+        $grid->create_time('添加时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
+        $grid->update_time('修改时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
 
         return $grid;
     }

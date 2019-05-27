@@ -15,10 +15,10 @@ Route::group([
     // 用户管理
     $router->resource('/user', UserController::class);
     // 商品管理
-    $router->get('/goods', 'GoodsController@index');
+    $router->resource('/goods', GoodsController::class);
     // 购物车管理
-    $router->get('/cart', 'CartController@index');
+    $router->resource('/cart', CartController::class);
     // 订单管理
-    $router->get('/order', 'OrderController@index');
+    $router->resource('/order', OrderController::class);
 
 });
