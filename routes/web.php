@@ -15,13 +15,18 @@ Route::post('/user/regadd','Controller\UserController@regadd');
 //用户登录
 Route::get('/user/login','Controller\UserController@login');
 Route::post('/user/loginadd','Controller\UserController@loginadd');
+//用户修改密码
+Route::get('/user/passup','Controller\UserController@passup')->middleware('check');
+Route::post('/user/passupdo','Controller\UserController@passupdo')->middleware('check');
+//用户个人中心
+Route::get('/user/center','Controller\UserController@center')->middleware('check');
 //用户地址
 Route::get('/user/address','Controller\AddressController@address')->middleware('check');
 Route::any('/user/getaddress','Controller\AddressController@getaddress');
 Route::any('/user/addressadd','Controller\AddressController@addressadd');
 Route::any('/user/addresslist','Controller\AddressController@addresslist');
-Route::any('/user/addresslists','Controller\AddressController@addresslists');
 Route::any('/user/addressdel','Controller\AddressController@addressdel');
+Route::any('/user/addressup','Controller\AddressController@addressup');
 Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
 
 
@@ -51,4 +56,12 @@ Route::post('wechatnotify','Controller\WechatPayController@notify');
 // 微信轮询
 Route::get('payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
-Route::get('success','Controller\WechatPayController@success');
+Route::get('wechatsuccess','Controller\WechatPayController@success');
+
+
+// 加入收藏
+Route::post('collect','Controller\CollectController@collect');
+// 收藏展示
+Route::get('collectlist','Controller\CollectController@collectShow');
+// 删除收藏
+Route::get('delcollect','Controller\CollectController@delCollect');

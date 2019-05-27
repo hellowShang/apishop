@@ -4,10 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UsreModel extends Model
+class Collect extends Model
 {
-    //
-    public $table = 'user';
+    protected $table = 'collect';
     public $timestamps = false;
-    public $primaryKey = 'uid';
 }

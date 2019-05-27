@@ -75,16 +75,13 @@ class AddressController extends Controller
         }
     }
     public function addresslist(){
-        return view('address.list');
-    }
-    public function addresslists(){
         $uid=$_COOKIE['uid'];
         $where=[
             'uid'=>$uid,
             'is_del'=>0
         ];
-        $data=AddressModel::where($where)->get();
-        return json_encode($data,256);
+        $data=AddressModel::where($where)->get()->toArray();
+        return view('address.list',['data'=>$data]);
     }
     public function addressdel(Request $request){
         $uid=$_COOKIE['uid'];
@@ -99,6 +96,15 @@ class AddressController extends Controller
         }else{
             return json_encode(['code'=>1,'msg'=>'删除失败']);
         }
+    }
+    public function addressup(Request $request){
+        $address_id=$request->input('address_id');
+        $where=[
+            'address_id'=>$address_id
+        ];
+        $data=AddressModel::where($where)->first();
+        $arr=AreaModel::where(['pid'=>0])->get()->toArray();
+        return view('address.update',['arr'=>$arr,'data'=>$data]);
     }
     public function addressupdate(Request $request){
 

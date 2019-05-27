@@ -12,4 +12,13 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
 
+    // 用户管理
+    $router->resource('/user', UserController::class);
+    // 商品管理
+    $router->get('/goods', 'GoodsController@index');
+    // 购物车管理
+    $router->get('/cart', 'CartController@index');
+    // 订单管理
+    $router->get('/order', 'OrderController@index');
+
 });

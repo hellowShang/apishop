@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Laravel学院')
+@section('title', '全部商品')
 
 @section('sidebar')
     @parent
@@ -36,7 +36,8 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：<b>{{$v->goods_score}}</b>
 						</div>
 						<button class="btn button-default">{{$v->goods_name}}</button>
-					</div>	
+						<button class="btn button-default collect" goods_id="{{$v->goods_id}}">收藏</button>
+					</div>
 					<div class="col s6"></div></br>					
 				</div>	
 				@endforeach		
@@ -52,5 +53,6 @@
 			<br>
 		</div>
 	</div>
+
 	</div>
  @endsection

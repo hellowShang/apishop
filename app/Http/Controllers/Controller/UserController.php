@@ -18,6 +18,7 @@ class UserController extends Controller
         $pass1=$request->input('pass1');
         $pass2=$request->input('pass2');
         $age=$request->input('age');
+        $tel=$request->input('tel');
         if(empty($name)){
             return json_encode(['code'=>1,'msg'=>'用户名不能为空']);
         }
@@ -33,6 +34,9 @@ class UserController extends Controller
         if(empty($age)){
             return json_encode(['code'=>1,'msg'=>'年龄不能为空']);
         }
+        if(empty($tel)){
+            return json_encode(['code'=>1,'msg'=>'手机号不能为空']);
+        }
         if($pass2!=$pass1){
             return json_encode(['code'=>1,'msg'=>'两次输入密码不一致']);
         }
@@ -43,6 +47,7 @@ class UserController extends Controller
                 'age'=>$age,
                 'pass'=>$pass1,
                 'email'=>$email,
+                'tel'=>$tel,
                 'add_time'=>time()
             ];
             $res=UsreModel::insert($data);
@@ -73,5 +78,43 @@ class UserController extends Controller
         }else{
             return json_encode(['code'=>2,'msg'=>'没有有此用户，去注册']);
         }
+    }
+    public function passup(){
+        return view('user.pass');
+    }
+    public function passupdo(Request $request){
+        $uid=$_COOKIE['uid'];
+        $pass=$request->input('pass');
+        $pass1=$request->input('pass1');
+        $pass2=$request->input('pass2');
+        if(empty($pass)){
+            return json_encode(['code'=>1,'msg'=>'原密码不能为空']);
+        }
+        if(empty($pass1)){
+            return json_encode(['code'=>1,'msg'=>'密码不能为空']);
+        }
+        if(empty($pass2)){
+            return json_encode(['code'=>1,'msg'=>'确认密码不能为空']);
+        }
+        $arr=UsreModel::where('uid',$uid)->first();
+        if($pass==$arr['pass']){
+            if($pass2!=$pass1){
+                return json_encode(['code'=>1,'msg'=>'两次输入密码不一致']);
+            }else{
+                $data=UsreModel::where('uid',$uid)->update(['pass'=>$pass2]);
+                if($data){
+                    return json_encode(['code'=>0,'msg'=>'修改成功']);
+                }else{
+                    return json_encode(['code'=>1,'msg'=>'修改失败']);
+                }
+            }
+        }else{
+            return json_encode(['code'=>1,'msg'=>'原密码错误']);
+        }
+    }
+    public function center(){
+        $uid=$_COOKIE['uid'];
+        $arr=UsreModel::where('uid',$uid)->first()->toArray();
+        return view('user.center',['arr'=>$arr]);
     }
 }

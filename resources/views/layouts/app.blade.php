@@ -40,10 +40,11 @@
             <img src="/img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="/user/center"><i class="fa fa-user"></i>个人中心</a></li>
         <li><a href="/user/address"><i class="fa fa-envelope-o"></i>收货地址</a></li>
         <li><a href="/user/login"><i class="fa fa-sign-in"></i>登录</a></li>
         <li><a href="/user/reg"><i class="fa fa-user-plus"></i>注册</a></li>
+        <li><a href="/user/passup"><i class="fa fa-user-plus"></i>修改密码</a></li>
     </ul>
 </div>
 <!-- end side nav right-->
@@ -77,7 +78,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="wishlist.html" class="button-link">
+                    <a href="collectlist" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-heart"></i>
@@ -245,7 +246,7 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-            <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+            <a href="/collectlist"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
