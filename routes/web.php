@@ -18,16 +18,18 @@ Route::post('/user/loginadd','Controller\UserController@loginadd');
 //用户修改密码
 Route::get('/user/passup','Controller\UserController@passup')->middleware('check');
 Route::post('/user/passupdo','Controller\UserController@passupdo')->middleware('check');
+Route::any('/user/xian','Controller\UserController@xian')->middleware('check');
+Route::any('/user/exit','Controller\UserController@exit')->middleware('check');
 //用户个人中心
 Route::get('/user/center','Controller\UserController@center')->middleware('check');
 //用户地址
 Route::get('/user/address','Controller\AddressController@address')->middleware('check');
-Route::any('/user/getaddress','Controller\AddressController@getaddress');
-Route::any('/user/addressadd','Controller\AddressController@addressadd');
-Route::any('/user/addresslist','Controller\AddressController@addresslist');
-Route::any('/user/addressdel','Controller\AddressController@addressdel');
-Route::any('/user/addressup','Controller\AddressController@addressup');
-Route::any('/user/addressupdate','Controller\AddressController@addressupdate');
+Route::any('/user/getaddress','Controller\AddressController@getaddress')->middleware('check');
+Route::any('/user/addressadd','Controller\AddressController@addressadd')->middleware('check');
+Route::any('/user/addresslist','Controller\AddressController@addresslist')->middleware('check');
+Route::any('/user/addressdel','Controller\AddressController@addressdel')->middleware('check');
+Route::any('/user/addressup','Controller\AddressController@addressup')->middleware('check');
+Route::any('/user/addressupdate','Controller\AddressController@addressupdate')->middleware('check');
 
 
 //购物车

@@ -79,6 +79,21 @@ class UserController extends Controller
             return json_encode(['code'=>2,'msg'=>'没有有此用户，去注册']);
         }
     }
+    public function xian(){
+        $uid=$_COOKIE['uid'];
+        $data=UsreModel::where('uid',$uid)->first()->toArray();
+        return $data;
+    }
+    public function exit(){
+        $yuming=env('YUMING');
+        $uid=$_COOKIE['uid'];
+        setcookie('uid',"",time()-1,'/',$yuming,false,true);
+        if(empty($uid)){
+            return json_encode(['code'=>1,'msg'=>'你还没有登录'],256);
+        }else{
+            return json_encode(['code'=>0,'msg'=>'退出成功'],256);
+        }
+    }
     public function passup(){
         return view('user.pass');
     }
