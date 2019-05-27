@@ -25,7 +25,7 @@
 					<div class="review-details">
 						<div class="row">
 							<div class="col s3">
-								<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}" alt="" class="responsive-img">
+								<img src="http://www.lab993.com/uploads/goodsimgs/{{$goods->goods_img}}" alt="" class="responsive-img" >
 							</div>
 							<div class="col s9">
 								<div class="review-title">
