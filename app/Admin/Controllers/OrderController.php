@@ -82,14 +82,18 @@ class OrderController extends Controller
         $grid = new Grid(new Order);
 
         $grid->oid('Oid');
-        $grid->uid('Uid');
-        $grid->order_no('Order no');
-        $grid->order_amount('Order amount');
-        $grid->order_text('Order text');
-        $grid->pay_status('Pay status');
-        $grid->order_status('Order status');
-        $grid->create_time('Create time');
-        $grid->update_time('Update time');
+        $grid->uid('用户id');
+        $grid->order_no('订单号');
+        $grid->order_amount('商品总价');
+        $grid->order_text('下单信息备注');
+        $grid->pay_status('支付状态')->using(['1'=>'未支付','2'=>'已支付']);
+        $grid->order_status('订单状态')->using(['1'=>'未删除','2'=>'已删除']);
+        $grid->create_time('生成时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
+        $grid->update_time('修改时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
 
         return $grid;
     }

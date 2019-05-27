@@ -82,12 +82,14 @@ class UserController extends Controller
         $grid = new Grid(new UsreModel);
 
         $grid->uid('Uid');
-        $grid->age('Age');
-        $grid->name('Name');
-        $grid->pass('Pass');
-        $grid->email('Email');
-        $grid->add_time('Add time');
-        $grid->tel('Tel');
+        $grid->age('年龄');
+        $grid->name('昵称');
+        $grid->pass('密码');
+        $grid->email('邮箱');
+        $grid->add_time('注册时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
+        $grid->tel('电话');
 
         return $grid;
     }
