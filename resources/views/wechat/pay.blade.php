@@ -96,7 +96,7 @@
             '/payStatus?order_sn=' + "{{$order_sn}}",
             function(res){
                 if(res.msg == 'ok'){
-                    location.href="/success?order_sn=" + res.order_sn;
+                    location.href="/wechatsuccess?order_sn=" + res.order_sn;
                 }
             },
             'json'

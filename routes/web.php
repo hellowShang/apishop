@@ -56,4 +56,12 @@ Route::post('wechatnotify','Controller\WechatPayController@notify');
 // 微信轮询
 Route::get('payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
-Route::get('success','Controller\WechatPayController@success');
+Route::get('wechatsuccess','Controller\WechatPayController@success');
+
+
+// 加入收藏
+Route::post('collect','Controller\CollectController@collect');
+// 收藏展示
+Route::get('collectlist','Controller\CollectController@collectShow');
+// 删除收藏
+Route::get('delcollect','Controller\CollectController@delCollect');

@@ -79,7 +79,8 @@ class PayController extends Controller
     public function notify(){
         $data = $_POST;
         is_dir('logs') or mkdir('logs',0777,true);
-        file_put_contents('logs/notify.log',json_encode($data.JSON_UNESCAPED_UNICODE),FILE_APPEND);
+        $str = date('Y-m-d H:i:s').json_encode($data,JSON_UNESCAPED_UNICODE)."\n\r";
+        file_put_contents('logs/notify.log',$str,FILE_APPEND);
 
         // 验签
         $str = $this->checksign($data);
