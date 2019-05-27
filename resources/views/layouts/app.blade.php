@@ -38,13 +38,17 @@
     <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
         <li class="profil">
             <img src="/img/profile.jpg" alt="">
-            <h2>John Doe</h2>
+            <div class="mingzi">
+                <h2 ></h2>
+            </div>
+
         </li>
         <li><a href="/user/center"><i class="fa fa-user"></i>个人中心</a></li>
         <li><a href="/user/address"><i class="fa fa-envelope-o"></i>收货地址</a></li>
         <li><a href="/user/login"><i class="fa fa-sign-in"></i>登录</a></li>
         <li><a href="/user/reg"><i class="fa fa-user-plus"></i>注册</a></li>
         <li><a href="/user/passup"><i class="fa fa-user-plus"></i>修改密码</a></li>
+        <li><a href="javascript:;" class="exit"><i class="fa fa-user-plus"></i>退出</a></li>
     </ul>
 </div>
 <!-- end side nav right-->
@@ -292,3 +296,31 @@
 <script src="/js/main.js"></script>
 </body>
 </html>
+<script>
+    $(function () {
+        $.ajax({
+            url: '/user/xian',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                var  str = "<h2>" + data.name + "</h2>";
+                $('.mingzi').html(str);
+            }
+        });
+        $('.exit').click(function () {
+            $.ajax({
+                url: '/user/exit',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if(data.code==0){
+                        alert(data.msg);
+                        location.href="/user/login";
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        })
+    })
+</script>

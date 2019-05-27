@@ -47,6 +47,7 @@
                         str += "<option value=" + v.id + ">" + v.name + "</option>";
                     });
                     $('#city').html(str);
+                    $('.area').html("<option>区县</option>");
                 }
             });
         });

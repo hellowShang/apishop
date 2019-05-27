@@ -19,6 +19,7 @@
                         <td>市</td>
                         <td>区</td>
                         <td>加入时间</td>
+                        <td>是否默认</td>
                         <td>操作</td>
                     </tr>
                     @foreach($data as $k=>$v)
@@ -30,9 +31,16 @@
                         <td>{{$v['city']}}</td>
                         <td>{{$v['area']}}</td>
                         <td>{{date('Y-m-d H:i:s',$v['address_time'])}}</td>
+                        @if($v['is_status']==1)
+                            <td>√</td>
+                        @else
+                            <td>×</td>
+                        @endif
                         <td>
                             <button class="sc">删除</button>
                             <input type="hidden" name="address_id" value="{{$v['address_id']}}">
+                            &nbsp;&nbsp;
+                            <button class="xg">修改</button>
                         </td>
                     </tr>
                     @endforeach
@@ -62,16 +70,8 @@
             });
         });
         $('.xg').click(function(){
-            var address_id=$(this).next().val();
-            $.ajax({
-                url:'/user/addressup',
-                data:{'address_id':address_id},
-                type:'post',
-                dataType:'json',
-                success:function (data) {
-
-                }
-            });
+            var address_id=$(this).prev().val();
+            location.href="/user/addressup?address_id="+address_id;
         });
         return false;
     });
