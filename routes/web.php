@@ -51,7 +51,7 @@ Route::get('/success','Controller\PayController@success');
 // 异步通知
 Route::post('/notify','Controller\PayController@notify');
 
-// 微信支付
+// 微信nativb支付
 Route::get('/wechatpay','Controller\WechatPayController@pay');
 // 微信异步
 Route::post('/wechatnotify','Controller\WechatPayController@notify');
@@ -59,6 +59,8 @@ Route::post('/wechatnotify','Controller\WechatPayController@notify');
 Route::get('/payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
 Route::get('/wechatsuccess','Controller\WechatPayController@success');
+// 微信jsapi支付
+Route::get('/jsapi','Controller\WechatPayController@jsapi');
 
 
 // 加入收藏
