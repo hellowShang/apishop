@@ -82,12 +82,13 @@ class CartController extends Controller
         $grid = new Grid(new CartModel);
 
         $grid->id('Id');
-        $grid->user_id('User id');
-        $grid->goods_id('Goods id');
-        $grid->cart_quantity('Cart quantity');
-        $grid->create_time('Create time');
-        $grid->is_delete('Is delete');
-        $grid->update_time('Update time');
+        $grid->user_id('用户id');
+        $grid->goods_id('商品id');
+        $grid->cart_quantity('购买数量');
+        $grid->create_time('添加时间')->display(function(){
+            return date('Y-m-d H:i:s');
+        });
+        $grid->is_delete('回收站')->using(['1'=>'否','2'=>'是']);
 
         return $grid;
     }
