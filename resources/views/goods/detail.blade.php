@@ -81,7 +81,8 @@
 						}
 					},
 					error:function(){
-						alert('出错了');
+						alert('您还没有登录呢，请先登录');
+						location.href="/user/login";
 					}
 				})
 			}
