@@ -65,3 +65,8 @@ Route::post('/collect','Controller\CollectController@collect');
 Route::get('/collectlist','Controller\CollectController@collectShow');
 // 删除收藏
 Route::get('/delcollect','Controller\CollectController@delCollect');
+
+// 微信网页授权重定向
+Route::get('/wechatredirect','Controller\WechatPayController@wechatRedirect');
+// 微信网页授权
+Route::get('/wechatlogin','Controller\WechatPayController@wechatLogin');

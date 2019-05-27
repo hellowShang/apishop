@@ -14,6 +14,7 @@ class WechatPayController extends Controller
     public $url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     // 异步回调
     public $notify = "http://apishop.lab993.com/wechatnotify";
+
     /**
      * 测试-微信支付
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -175,4 +176,16 @@ class WechatPayController extends Controller
         $order_sn = request()->order_sn;
         return view('wechat.success',['order_sn' => $order_sn]);
     }
+
+    // 微信网页授权重定向
+    public function wechatRedirect(){
+        $redirect_url = urlencode('http://apishop.lab993.com/wechatlogin');
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHATAPPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        header('location:'.$url);
+    }
+
+    // 微信网页授权获取信息
+     public function wechatLogin(){
+        echo 123;
+     }
 }
