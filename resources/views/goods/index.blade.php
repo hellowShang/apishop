@@ -29,7 +29,7 @@
 				@foreach($list as $k=>$v)	
 				<div class="col s6" >				
 					<div class="content">
-						<a href='/goods/detail/{{$v->goods_id}}'><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:60%;height:40%;"></a>
+						<a href='/goods/detail/{{$v->goods_id}}'><img src="http://www.lab993.com/uploads/goodsimgs/{{$v->goods_img}}" alt="" style="width:300px;height:300px;"></a>
 						<h6><a href="/goods/detail/{{$v->goods_id}}"><span>{{$v->goods_name}}</span></a></h6>
 						<div class="price">
 							价格：￥{{$v->self_price}} <span>￥{{$v->market_price}}</span>
@@ -46,7 +46,6 @@
 			<div class="row margin-bottom">
 			<div class="pagination-product">
 				<ul>
-					
 						{{$list->links()}}
 				
 				</ul>
@@ -54,21 +53,6 @@
 			<br>
 		</div>
 	</div>
-</div>
-	<script>
-		$(function(){
-			// 加入收藏
-			$(document).on('click','.collect',function(){
-				var goods_id = $(this).attr('goods_id');
-				$.post(
-						'/collect',
-						{goods_id:goods_id},
-						function(res){
-							alert(res.msg)
-						},
-						'json'
-				);
-			});
-		});
-	</script>
-@endsection
+
+	</div>
+ @endsection
