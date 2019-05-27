@@ -43,25 +43,25 @@ Route::get('/order/list','Controller\OrderController@orderList');
 Route::get('/order/deleteOrder','Controller\OrderController@deleteOrder');
 
 // 支付宝支付
-Route::get('pay','Controller\PayController@pay');
+Route::get('/pay','Controller\PayController@pay');
 // 同步通知
-Route::get('success','Controller\PayController@success');
+Route::get('/success','Controller\PayController@success');
 // 异步通知
-Route::post('notify','Controller\PayController@notify');
+Route::post('/notify','Controller\PayController@notify');
 
 // 微信支付
-Route::get('wechatpay','Controller\WechatPayController@pay');
+Route::get('/wechatpay','Controller\WechatPayController@pay');
 // 微信异步
-Route::post('wechatnotify','Controller\WechatPayController@notify');
+Route::post('/wechatnotify','Controller\WechatPayController@notify');
 // 微信轮询
-Route::get('payStatus','Controller\WechatPayController@payStatus');
+Route::get('/payStatus','Controller\WechatPayController@payStatus');
 // 支付成功提示
-Route::get('wechatsuccess','Controller\WechatPayController@success');
+Route::get('/wechatsuccess','Controller\WechatPayController@success');
 
 
 // 加入收藏
-Route::post('collect','Controller\CollectController@collect');
+Route::post('/collect','Controller\CollectController@collect');
 // 收藏展示
-Route::get('collectlist','Controller\CollectController@collectShow');
+Route::get('/collectlist','Controller\CollectController@collectShow');
 // 删除收藏
-Route::get('delcollect','Controller\CollectController@delCollect');
+Route::get('/delcollect','Controller\CollectController@delCollect');

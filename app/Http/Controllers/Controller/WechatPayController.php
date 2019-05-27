@@ -41,6 +41,8 @@ class WechatPayController extends Controller
         // 请求支付接口
         $arr = $this-> postXmlCurl($XMLInfo,$this->url);
 
+        echo "<pre>";print_r($arr);echo "</pre>";die;
+
         // XML数据转化成对象
         $data = simplexml_load_string($arr);
 
