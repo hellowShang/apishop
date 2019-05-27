@@ -255,7 +255,7 @@
             </div>
         </div>
         <div class="col s2">
-            <a href="contact.html"><i class="fa fa-envelope-o"></i></a>
+            <a href="user/address"><i class="fa fa-envelope-o"></i></a>
         </div>
         <div class="col s2">
             <a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
