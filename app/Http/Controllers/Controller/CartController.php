@@ -48,9 +48,14 @@ class CartController extends Controller
     public function cartlist()
     {
         //购物车数据 两表联查
+        $user_id = $_COOKIE['uid'];
+        if(empty($user_id)){
+            die('请先登录');
+        }
         $cartInfo = CartModel::select('cart_quantity','goods.*')
             ->join('goods','goods.goods_id','=','cart.goods_id')
             ->where('cart.is_delete','=','1')
+            ->where('cart.user_id','=',"$user_id")
             ->get();
 
         $data = [
