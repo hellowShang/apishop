@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Controller;
 
+use App\Model\WechatUserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -186,6 +187,45 @@ class WechatPayController extends Controller
 
     // 微信网页授权获取信息
      public function wechatLogin(){
-        echo 123;
+        // 获取code
+        $code = $_GET['code'];
+
+        // 获取access_token
+        $access_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHATAPPID').'&secret='.env('WECAHTAPPSECRET').'&code='.$code.'&grant_type=authorization_code';
+        $access_response = json_decode(file_get_contents($access_url),true);
+        if(!isset($access_response['errcode'])){
+            $openid = $access_response['openid'];
+            $access_token = $access_response['access_token'];
+        }
+
+        // 检测access_token是否有效
+        $check_url = 'https://api.weixin.qq.com/sns/auth?access_token='.$access_token.'&openid='.$openid;
+        $check_response = json_decode(file_get_contents($check_url),true);
+        if($check_response['errcode'] == 0){
+            // 获取用户信息
+            $getUserInfo_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+            $user_response = json_decode(file_get_contents($getUserInfo_url),true);
+
+            // 判断是否关注   关注：欢迎   未关注：入库并欢迎
+            $arr = WechatUserModel::where('openid',$openid)->first();
+            if($arr){ // 关注
+                echo "<font size='16px'>你好" . $arr['nickname'] . "欢迎回来</font>";
+            }else{ // 未关注
+                // 首次登录，数据入库
+                $info = [
+                    'sub_status' => 1,
+                    'openid' => $user_response['openid'],
+                    'nickname' => $user_response['nickname'],
+                    'sex' => $user_response['sex'],
+                    'city' => $user_response['city'],
+                    'province' => $user_response['province'],
+                    'country' => $user_response['country'],
+                    'headimgurl' => $user_response['headimgurl'],
+                ];
+
+                WechatUserModel::insert($info);
+                echo "<font size='16px'>你好" . $arr['nickname'] . "欢迎首次登录</font>";
+            }
+        }
      }
 }
