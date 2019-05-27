@@ -40,10 +40,11 @@
             <img src="/img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="/user/center"><i class="fa fa-user"></i>个人中心</a></li>
         <li><a href="/user/address"><i class="fa fa-envelope-o"></i>收货地址</a></li>
         <li><a href="/user/login"><i class="fa fa-sign-in"></i>登录</a></li>
         <li><a href="/user/reg"><i class="fa fa-user-plus"></i>注册</a></li>
+        <li><a href="/user/passup"><i class="fa fa-user-plus"></i>修改密码</a></li>
     </ul>
 </div>
 <!-- end side nav right-->

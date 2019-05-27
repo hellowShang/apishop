@@ -20,6 +20,9 @@
                             <input type="email" name="email" placeholder="EMAIL" class="validate" required>
                         </div>
                         <div class="input-field">
+                            <input type="tel" name="tel" placeholder="TEL" class="validate" required>
+                        </div>
+                        <div class="input-field">
                             <input type="number" name="age" placeholder="AGE" class="validate" required>
                         </div>
                         <div class="input-field">
@@ -45,9 +48,10 @@
             var pass2=$("input[name='pass2']").val();
             var age=$("input[name='age']").val();
             var email=$("input[name='email']").val();
+            var tel=$("input[name='tel']").val();
             $.ajax({
                 url:'/user/regadd',
-                data:{'name':name,'pass1':pass1,'pass2':pass2,'age':age,'email':email},
+                data:{'name':name,'pass1':pass1,'pass2':pass2,'age':age,'email':email,'tel':tel},
                 type:'post',
                 dataType:'json',
                 success:function (data) {
