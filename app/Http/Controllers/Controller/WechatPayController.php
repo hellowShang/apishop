@@ -40,28 +40,38 @@ class WechatPayController extends Controller
                 'notify_url' => $this->notify,                        // 异步通知地址
                 'trade_type' => 'NATIVE'                                // 交易类型
             ];
+        }else{
 
-            $this->values = $info;
-            // 签名
-            $this->getSign();
-            // 数据转化成XML格式
-            $XMLInfo = $this-> ToXml();
-            // 请求支付接口
-            $arr = $this-> postXmlCurl($XMLInfo,$this->url);
+            $info = [
+                'appid' => env('APPID'),                        // 公众账号ID
+                'mch_id' => env('MCH_ID'),                      // 商户号
+                'nonce_str' => Str::random(16),                       // 随机字符串
+                'body' => '微信订单支付',                                 // 商品描述
+                'out_trade_no' => $out_trade_no,                      // 商户订单号
+                'total_fee' => $total_fee,                             // 标价金额
+                'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],          // 客户端ip
+                'notify_url' => $this->notify,                        // 异步通知地址
+                'trade_type' => 'JSAPI'                                // 交易类型
+            ];
+        }
 
+        $this->values = $info;
+        // 签名
+        $this->getSign();
+        // 数据转化成XML格式
+        $XMLInfo = $this-> ToXml();
+        // 请求支付接口
+        $arr = $this-> postXmlCurl($XMLInfo,$this->url);
+
+        if(substr_count($server_str,'Windows')){
             // XML数据转化成对象
             $data = simplexml_load_string($arr);
 
             // 将 code_url 返回给前端，前端生成 支付二维码
             return view("wechat.pay",['code_url' => $data->code_url,'order_sn' => $out_trade_no]);
         }else{
-            $redirect_url = urlencode('http://apishop.lab993.com/jsapi?order_no='.$out_trade_no);
-            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHATAPPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-            header('location:'.$url);
+            echo "<pre>";print_r($arr);echo "</pre>";die;
         }
-
-
-
     }
     /**
      * 设计签名
@@ -219,7 +229,6 @@ class WechatPayController extends Controller
         $code = $_GET['code'];
         // 获取用户信息
         $user_response = $this->wechatLogin($code);
-
         $openid = $user_response['openid'];
         // 判断是否关注   关注：欢迎   未关注：入库并欢迎
         $arr = WechatUserModel::where('openid',$openid)->first();
@@ -227,7 +236,7 @@ class WechatPayController extends Controller
             if($arr['uid'] == ''){
                 echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
             }else{
-                setcookie('uid',$arr['uid'],time()+86400,'/',env('YUMING'),false,true);
+                setcookie('uid',$arr->uid,time()+86400,'/',env('YUMING'),false,true);
                 header('Refresh:3;url=/');
             }
         }else{ // 未关注
@@ -282,34 +291,5 @@ class WechatPayController extends Controller
         }else{
             die(json_encode(['msg' => '请先注册账号，再绑定','num' => 1]));
         }
-    }
-
-    // jsapi支付
-    public function jsapi(){
-        $total_fee =1;                                              // 支付金额
-        $out_trade_no = $_GET['order_no'];                          // 订单号
-        $arr = $this->wechatLogin($_GET['code']);
-        $info = [
-            'appid' => env('APPID'),                        // 公众账号ID
-            'mch_id' => env('MCH_ID'),                      // 商户号
-            'nonce_str' => Str::random(16),                       // 随机字符串
-            'body' => '微信订单支付',                                 // 商品描述
-            'out_trade_no' => $out_trade_no,                      // 商户订单号
-            'total_fee' => $total_fee,                             // 标价金额
-            'spbill_create_ip' => $_SERVER['REMOTE_ADDR'],          // 客户端ip
-            'notify_url' => $this->notify,                         // 异步通知地址
-            'trade_type' => 'JSAPI',                               // 交易类型
-            'openid'    => $arr['openid']
-        ];
-
-        $this->values = $info;
-        // 签名
-        $this->getSign();
-        // 数据转化成XML格式
-        $XMLInfo = $this-> ToXml();
-        // 请求支付接口
-        $arr = $this-> postXmlCurl($XMLInfo,$this->url);
-        echo "<pre>";print_r($arr);echo "</pre>";die;
-
     }
 }
