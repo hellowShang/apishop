@@ -221,10 +221,15 @@ class WechatPayController extends Controller
                     'province' => $user_response['province'],
                     'country' => $user_response['country'],
                     'headimgurl' => $user_response['headimgurl'],
+                    'create_time' => time()
                 ];
 
-                WechatUserModel::insert($info);
-                echo "<font size='16px'>你好" . $arr['nickname'] . "欢迎首次登录</font>";
+                $res = WechatUserModel::insert($info);
+                if($res){
+                    echo "<script>confirm( '是否绑定已有账号');location.href='/user/login'</script>";
+                }else{
+                    echo "<script>alert( '授权失败，请重新授权');location.href='/user/login'</script>";
+                }
             }
         }
      }
