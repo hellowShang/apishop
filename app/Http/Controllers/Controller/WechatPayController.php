@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Controller;
 
+use App\Model\UsreModel;
 use App\Model\WechatUserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -221,16 +222,42 @@ class WechatPayController extends Controller
                     'province' => $user_response['province'],
                     'country' => $user_response['country'],
                     'headimgurl' => $user_response['headimgurl'],
-                    'create_time' => time()
+                    'subscribe_time' => time()
                 ];
 
                 $res = WechatUserModel::insert($info);
                 if($res){
-                    echo "<script>confirm( '是否绑定已有账号');location.href='/user/login'</script>";
+                    echo "<script>confirm( '是否绑定已有账号');location.href='/account?openid=$openid'</script>";
                 }else{
                     echo "<script>alert( '授权失败，请重新授权');location.href='/user/login'</script>";
                 }
             }
         }
      }
+
+     // 绑定已有账号页面
+    public function account(){
+        $data = [
+            'openid' => request()->openid
+        ];
+        return view('wechat.account',$data);
+    }
+
+    // 绑定已有账号执行
+    public function accountDo(){
+        $account = request()->account;
+        $openid = request()->openid;
+        $arr = UsreModel::where('name',$account)->first();
+        if($arr){
+            $res = WechatUserModel::where('openid',$openid)->update(['uid' => $arr['uid']]);
+            if($res){
+                setcookie('uid',$arr->uid,time()+86400,'/',env('YUMING'),false,true);
+                echo json_encode(['msg' => '绑定成功','num' => 2]);
+            }else{
+                die(json_encode(['msg' => '绑定失败']));
+            }
+        }else{
+            die(json_encode(['msg' => '请先注册账号，再绑定','num' => 1]));
+        }
+    }
 }

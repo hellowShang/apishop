@@ -72,3 +72,6 @@ Route::get('/delcollect','Controller\CollectController@delCollect');
 Route::get('/wechatredirect','Controller\WechatPayController@wechatRedirect');
 // 微信网页授权
 Route::get('/wechatlogin','Controller\WechatPayController@wechatLogin');
+// 绑定已有账号
+Route::get('/account','Controller\WechatPayController@account');
+Route::post('/accountdo','Controller\WechatPayController@accountDo');
