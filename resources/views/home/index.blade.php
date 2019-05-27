@@ -225,7 +225,7 @@
                 },
                 error:function(){
                     alert('您还没有登录，请先登录');
-                    location.href='user/login';
+                    location.href='/user/login';
                 }
             })
         });
